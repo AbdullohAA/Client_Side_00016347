@@ -108,7 +108,7 @@ export class EditComponent implements OnInit {
           description: '', 
           ingredients: '', 
           steps: '', 
-          recipeBookId: null, // Reset to null
+          recipeBookId: null, 
           dto: {} 
         };
       },
