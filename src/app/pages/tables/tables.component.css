@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.myBtn{
+    margin-right: 10px;
+}
+
+button{
+    padding: 10px 15px;
+}

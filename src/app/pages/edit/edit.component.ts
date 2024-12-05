@@ -23,7 +23,7 @@ export class EditComponent implements OnInit {
     dto: {}  // Ensure dto is included
   }; // Stores the form data for a new or existing recipe
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
+  constructor(public route: ActivatedRoute, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -41,11 +41,11 @@ export class EditComponent implements OnInit {
   
     // Send the PUT request
     this.http.put(`http://localhost:5270/api/Recipes/${recipe.id}`, recipe).subscribe({
-      next: (response) => {
+      next: (response:any) => {
         console.log('Recipe updated successfully:', response);
         alert('Recipe updated successfully!');
       },
-      error: (err) => {
+      error: (err:any) => {
         console.error('Error updating recipe:', err);
         alert('An error occurred while updating the recipe. Please try again.');
       },
@@ -55,13 +55,13 @@ export class EditComponent implements OnInit {
   deleteRecipe(id: number): void {
     if (confirm('Are you sure you want to delete this recipe?')) {
       this.http.delete(`http://localhost:5270/api/Recipes/${id}`).subscribe({
-        next: (response) => {
+        next: (response:any) => {
           console.log('Recipe deleted successfully:', response);
           alert('Recipe deleted successfully!');
           // Optionally refresh the list of recipes or remove the deleted recipe from the view
           this.book.recipes = this.book.recipes.filter((recipe: any) => recipe.id !== id);
         },
-        error: (err) => {
+        error: (err:any) => {
           console.error('Error deleting recipe:', err);
           alert('An error occurred while deleting the recipe. Please try again.');
         },
@@ -79,7 +79,7 @@ export class EditComponent implements OnInit {
         // After book is fetched, set recipeBookId in recipeForm
         this.recipeForm.recipeBookId = this.book.id;
       },
-      error: (err) => {
+      error: (err:any) => {
         console.error('Error fetching book:', err);
       },
     });
@@ -99,7 +99,7 @@ export class EditComponent implements OnInit {
 
     // Make the POST request to the server
     this.http.post('http://localhost:5270/api/Recipes', this.recipeForm).subscribe({
-      next: (response) => {
+      next: (response:any) => {
         console.log('Recipe added successfully:', response);
         alert('Recipe added successfully!');
         // Reset the form after successful submission
@@ -112,7 +112,7 @@ export class EditComponent implements OnInit {
           dto: {} 
         };
       },
-      error: (err) => {
+      error: (err:any) => {
         console.error('Error adding recipe:', err);
         alert('An error occurred while adding the recipe. Please try again.');
       },

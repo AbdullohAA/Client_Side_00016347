@@ -29,12 +29,12 @@ export class AppComponent {
     // Send the POST request
     this.http.post('http://localhost:5270/api/RecipeBooks', bookData)
       .subscribe({
-        next: (response) => {
+        next: (response:any) => {
           console.log('Book added successfully:', response);
           this.newBookName = ''; // Clear the input field after successful addition
           window.location.reload()
         },
-        error: (error) => {
+        error: (error:any) => {
           console.error('Error adding book:', error);
         }
       });

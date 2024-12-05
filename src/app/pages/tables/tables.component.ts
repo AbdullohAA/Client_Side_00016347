@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Book } from '../../../types';
 
 @Component({
   selector: 'app-tables',
@@ -11,7 +12,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./tables.component.css'],
 })
 export class TablesComponent implements OnInit {
-  recipeBooks: any[] = [];
+  recipeBooks: Book[] = [];
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -25,7 +26,7 @@ export class TablesComponent implements OnInit {
         this.recipeBooks = response.data;
         console.log(this.recipeBooks);
       },
-      error: (err) => {
+      error: (err:any) => {
         console.error('Error fetching recipe books:', err);
       },
     });
@@ -37,7 +38,7 @@ export class TablesComponent implements OnInit {
         console.log(`Book with ID ${id} deleted successfully.`);
         this.recipeBooks = this.recipeBooks.filter((book) => book.id !== id);
       },
-      error: (err) => {
+      error: (err:any) => {
         console.error('Error deleting book:', err);
       },
     });
